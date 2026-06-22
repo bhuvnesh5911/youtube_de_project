@@ -180,7 +180,7 @@ Fact Table:
 <h2 align="center">📈 Complete Dashboard Overview</h2>
 
 <p align="center">
-  <img src="images/dashboard_overview.png" width="90%">
+  <img src="dashboard/dashboard_overview.png" width="90%">
 </p>
 
 ---
@@ -188,7 +188,7 @@ Fact Table:
 <h2 align="center">📊 Channel Analytics Dashboard</h2>
 
 <p align="center">
-  <img src="images/channel_analysis.png" width="85%">
+  <img src="dashboard/channel_analysis.png" width="85%">
 </p>
 
 ---
@@ -196,7 +196,7 @@ Fact Table:
 <h2 align="center">🏆 Top Videos Analysis</h2>
 
 <p align="center">
-  <img src="images/top_videos_chart.png" width="85%">
+  <img src="dashboard/top_videos_chart.png" width="85%">
 </p>
 
 ---
