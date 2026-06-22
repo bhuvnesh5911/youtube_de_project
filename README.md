@@ -4,6 +4,7 @@
   <img src="https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python">
   <img src="https://img.shields.io/badge/PostgreSQL-16-blue?style=for-the-badge&logo=postgresql">
   <img src="https://img.shields.io/badge/PowerBI-Dashboard-yellow?style=for-the-badge&logo=powerbi">
+  <img src="https://img.shields.io/badge/Docker-Containerized-blue?style=for-the-badge&logo=docker">
   <img src="https://img.shields.io/badge/Linux-Arch-black?style=for-the-badge&logo=arch-linux">
 </p>
 
@@ -46,18 +47,20 @@ Power BI Dashboard
 
 # 🚀 Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| Python | Data Extraction & ETL |
-| YouTube API | Data Source |
-| Pandas | Data Processing |
-| PostgreSQL | Data Warehouse |
-| SQLAlchemy | Database Connection |
-| SQL | Transformations |
-| Power BI | Dashboard & Analytics |
-| Git/GitHub | Version Control |
-| VS Code | Development Environment |
-| Arch Linux | Operating System |
+| Tool           | Purpose                    |
+| -------------- | -------------------------- |
+| Python         | Data Extraction & ETL      |
+| YouTube API    | Data Source                |
+| Pandas         | Data Processing            |
+| PostgreSQL     | Data Warehouse             |
+| SQLAlchemy     | Database Connection        |
+| SQL            | Transformations            |
+| Docker         | Containerization           |
+| Docker Compose | Multi-container Management |
+| Power BI       | Dashboard & Analytics      |
+| Git/GitHub     | Version Control            |
+| VS Code        | Development Environment    |
+| Arch Linux     | Operating System           |
 
 ---
 
@@ -78,16 +81,20 @@ youtube_de_project/
 │   ├── raw_sql/
 │   ├── staging_sql/
 │   └── warehouse_sql/
-|
-|__ config/    # API KEY 
+│
+├── config/                    # API KEY
+│
+├── dashboard/
+│   ├── dashboard_overview.png
+│   ├── channel_analysis.png
+│   └── top_videos_chart.png
 │
 ├── dashboards/
 │   └── youtube_dashboard.pbix
 │
-├── images/
-│   ├── dashboard_overview.png
-│   ├── channel_analytics.png
-│   └── top_videos_chart.png
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 │
 ├── requirements.txt
 └── README.md
@@ -99,22 +106,22 @@ youtube_de_project/
 
 ## Channel Information
 
-- Channel ID
-- Channel Name
-- Channel Created Date
-- Subscribers
-- Total Views
-- Total Videos
+* Channel ID
+* Channel Name
+* Channel Created Date
+* Subscribers
+* Total Views
+* Total Videos
 
 ## Video Information
 
-- Video ID
-- Channel ID
-- Video Title
-- Published Date
-- Views
-- Likes
-- Comments
+* Video ID
+* Channel ID
+* Video Title
+* Published Date
+* Views
+* Likes
+* Comments
 
 ---
 
@@ -126,8 +133,8 @@ Stores data exactly as received from the API.
 
 Tables:
 
-- `raw.raw_channels`
-- `raw.raw_videos`
+* `raw.raw_channels`
+* `raw.raw_videos`
 
 ## Staging Layer
 
@@ -135,8 +142,8 @@ Cleans and standardizes raw data.
 
 Tables:
 
-- `staging.stg_channels`
-- `staging.stg_videos`
+* `staging.stg_channels`
+* `staging.stg_videos`
 
 ## Warehouse Layer
 
@@ -144,12 +151,12 @@ Implements a Star Schema.
 
 Dimension Tables:
 
-- `warehouse.dim_channels`
-- `warehouse.dim_videos`
+* `warehouse.dim_channels`
+* `warehouse.dim_videos`
 
 Fact Table:
 
-- `warehouse.fact_video_metrics`
+* `warehouse.fact_video_metrics`
 
 ---
 
@@ -244,28 +251,51 @@ python scripts/transform.py
 
 ---
 
+# 🐳 Docker Support
+
+## Build Docker Image
+
+```bash
+docker build -t youtube-de-project .
+```
+
+## Run Docker Container
+
+```bash
+docker run --rm youtube-de-project
+```
+
+## Run Using Docker Compose
+
+```bash
+docker compose up --build
+```
+
+---
+
 # 📈 Future Improvements
 
-- Apache Airflow Integration
-- Docker Containerization
-- Incremental Data Loading
-- Data Quality Checks
-- CI/CD Pipeline using GitHub Actions
-- Cloud Deployment (AWS/GCP)
+* Apache Airflow Integration
+* Incremental Data Loading
+* Data Quality Checks
+* CI/CD Pipeline using GitHub Actions
+* Cloud Deployment (AWS/GCP)
+* Monitoring & Logging
 
 ---
 
 # 🎯 Key Learnings
 
-- REST API Integration
-- ETL Pipeline Development
-- Data Warehousing
-- Star Schema Modeling
-- SQL Transformations
-- PostgreSQL Administration
-- Power BI Dashboarding
-- Linux-based Development
-- Git & GitHub Workflow
+* REST API Integration
+* ETL Pipeline Development
+* Data Warehousing
+* Star Schema Modeling
+* SQL Transformations
+* PostgreSQL Administration
+* Docker Containerization
+* Power BI Dashboarding
+* Linux-based Development
+* Git & GitHub Workflow
 
 ---
 
