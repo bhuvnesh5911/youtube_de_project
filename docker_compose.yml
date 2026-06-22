@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: youtube_postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1007
+      POSTGRES_DB: youtube_dw
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  youtube_etl:
+    build: .
+
+    container_name: youtube_etl
+
+    depends_on:
+      - postgres
+
+    volumes:
+      - .:/app
+
+    command: python scripts/extract_channels.py
+
+volumes:
+  postgres_data:

@@ -1,18 +1,31 @@
+import os
 import requests
 import pandas as pd
 from datetime import datetime
 
-# Your YouTube API key
+
+# Configuration
+
+
 API_KEY = "AIzaSyAiMSldEiL0puLgTeRhcQefDZ9KpbsQjiw"
 
-# List of channel IDs
 CHANNEL_IDS = [
     "UC_x5XG1OV2P6uZZ5FSM9Ttw",  # Google for Developers
     "UCeVMnSShP_Iviwkknt83cww",  # CodeWithHarry
     "UCsBjURrPoezykLs9EqgamOA"   # Fireship
 ]
 
-url = "https://www.googleapis.com/youtube/v3/channels"
+BASE_URL = "https://www.googleapis.com/youtube/v3/channels"
+
+
+# Create raw folder
+
+
+os.makedirs("raw", exist_ok=True)
+
+
+# Extract data
+
 
 all_channels = []
 
@@ -24,11 +37,10 @@ for channel_id in CHANNEL_IDS:
         "key": API_KEY
     }
 
-    response = requests.get(url, params=params)
+    response = requests.get(BASE_URL, params=params)
 
-    # Check API status
     if response.status_code != 200:
-        print(f"Error fetching {channel_id}")
+        print(f"Failed to fetch {channel_id}")
         continue
 
     data = response.json()
@@ -55,20 +67,30 @@ for channel_id in CHANNEL_IDS:
 
         all_channels.append(channel_info)
 
+        print(f"Fetched: {channel_info['channel_name']}")
+
     else:
         print(f"No data found for {channel_id}")
 
+
 # Convert to DataFrame
+
+
 df = pd.DataFrame(all_channels)
 
-# Show data
 print("\n===== CHANNEL DATA =====\n")
 print(df)
 
+
 # Save CSV
+
+
+output_path = "raw/channel_info.csv"
+
 df.to_csv(
-    "/root/youtube_de_project/raw/channel_info.csv",
+    output_path,
     index=False
 )
 
-print("\nCSV saved successfully!")
+print(f"\nCSV saved successfully at {output_path}")
+
